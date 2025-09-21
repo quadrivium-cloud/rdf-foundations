@@ -1,14 +1,16 @@
 {
-  "@context": "./context.jsonld",
-  "@id": "urn:example:storage-account:uksouth:demo",
-  "@type": "storageAccount",
-  "name": "strdfstorage",
-  "sku": {
-    "tier": "Standard"
+  "@context": {
+    "az": "https://example.com/azure#"
   },
-  "accessTier": "Cool",
-  "accountReplication": "LRS",
-  "publicNetworkAccess": false,
-  "allowBlobPublicAccess": false,
-  "blobSoftDeleteRetentionDays": 7
+  "@id": "urn:example:storage-account:uksouth:demo",
+  "@type": "az:StorageAccount",
+  "az:name": "strdfstorage",
+  "az:sku": {
+    "az:tier": "Standard"
+  },
+  "az:accessTier": "Cool",
+  "az:accountReplication": "LRS",
+  "az:publicNetworkAccess": false,
+  "az:allowBlobPublicAccess": false,
+  "az:blobSoftDeleteRetentionDays": 7
 }
