@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StorageAccount Definition",
+  "description": "JSON Schema for a simple storage account JSON-LD definition used by the ingestion script.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": [
+        "object",
+        "string"
+      ],
+      "description": "JSON-LD context (can be a URL string or an inline object)."
+    },
+    "@id": {
+      "type": "string"
+    },
+    "@type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Storage account name (must be globally unique in Azure)."
+    },
+    "location": {
+      "type": "string",
+      "description": "Azure region (e.g. uksouth)."
+    },
+    "sku": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "accessTier": {
+      "type": "string"
+    },
+    "replication": {
+      "type": "string"
+    },
+    "resourceGroup": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "location",
+    "sku",
+    "resourceGroup"
+  ]
+}

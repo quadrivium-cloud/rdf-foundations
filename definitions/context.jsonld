@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "name": "http://schema.org/name",
+    "location": "http://schema.org/location",
+    "storageAccount": "https://your.org/ns#StorageAccount",
+    "sku": {
+      "@id": "https://your.org/ns#sku",
+      "@type": "@id"
+    },
+    "accessTier": "https://your.org/ns#accessTier",
+    "replication": "https://your.org/ns#replication"
+  }
+}

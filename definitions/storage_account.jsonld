@@ -1,0 +1,14 @@
+{
+  "@context": "./context.jsonld",
+  "@id": "urn:example:storage-account:uksouth:demo",
+  "@type": "storageAccount",
+  "name": "strdfstorage",
+  "sku": {
+    "tier": "Standard"
+  },
+  "accessTier": "Cool",
+  "accountReplication": "LRS",
+  "publicNetworkAccess": false,
+  "allowBlobPublicAccess": false,
+  "blobSoftDeleteRetentionDays": 7
+}
