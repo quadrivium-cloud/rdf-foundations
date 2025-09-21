@@ -21,14 +21,14 @@ def load_definition(path: Path) -> dict:
 
 def extract_storage_account(defn: dict) -> dict:
     sa = {}
-    sa['name'] = defn.get('name')
-    sku = defn.get('sku') or {}
-    sa['sku_tier'] = sku.get('tier')
-    sa['access_tier'] = defn.get('accessTier')
-    sa['accountReplication'] = defn.get('accountReplication')
-    sa['publicNetworkAccess'] = defn.get('publicNetworkAccess')
-    sa['allowBlobPublicAccess'] = defn.get('allowBlobPublicAccess')
-    sa['blobSoftDeleteRetentionDays'] = defn.get('blobSoftDeleteRetentionDays')
+    sa['name'] = defn.get('az:name')
+    sku = defn.get('az:sku') or {}
+    sa['sku_tier'] = sku.get('az:tier')
+    sa['access_tier'] = defn.get('az:accessTier')
+    sa['accountReplication'] = defn.get('az:accountReplication')
+    sa['publicNetworkAccess'] = defn.get('az:publicNetworkAccess')
+    sa['allowBlobPublicAccess'] = defn.get('az:allowBlobPublicAccess')
+    sa['blobSoftDeleteRetentionDays'] = defn.get('az:blobSoftDeleteRetentionDays')
 
     # Require at least name, sku_tier and accountReplication
     required = [k for k in ('name', 'sku_tier', 'accountReplication') if not sa.get(k)]

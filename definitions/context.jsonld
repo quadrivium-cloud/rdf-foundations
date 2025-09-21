@@ -1,13 +1,14 @@
 {
   "@context": {
-    "name": "http://schema.org/name",
-    "location": "http://schema.org/location",
-    "storageAccount": "https://your.org/ns#StorageAccount",
-    "sku": {
-      "@id": "https://your.org/ns#sku",
-      "@type": "@id"
-    },
-    "accessTier": "https://your.org/ns#accessTier",
-    "replication": "https://your.org/ns#replication"
+    "az": "https://example.com/azure#",
+    "az:StorageAccount": "https://example.com/azure#StorageAccount",
+    "az:name": "https://example.com/azure#name",
+    "az:sku": "https://example.com/azure#sku",
+    "az:tier": "https://example.com/azure#tier",
+    "az:accessTier": "https://example.com/azure#accessTier",
+    "az:accountReplication": "https://example.com/azure#accountReplication",
+    "az:publicNetworkAccess": "https://example.com/azure#publicNetworkAccess",
+    "az:allowBlobPublicAccess": "https://example.com/azure#allowBlobPublicAccess",
+    "az:blobSoftDeleteRetentionDays": "https://example.com/azure#blobSoftDeleteRetentionDays"
   }
 }
