@@ -30,7 +30,7 @@ def extract_storage_account(defn: dict) -> dict:
     sa['allowBlobPublicAccess'] = defn.get('allowBlobPublicAccess')
     sa['blobSoftDeleteRetentionDays'] = defn.get('blobSoftDeleteRetentionDays')
 
-    # require at least name and sku_name
+    # Require at least name, sku_tier and accountReplication
     required = [k for k in ('name', 'sku_tier', 'accountReplication') if not sa.get(k)]
     if required:
         raise ValueError(f"Missing required properties in definition: {required}")
