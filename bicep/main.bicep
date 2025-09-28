@@ -1,14 +1,14 @@
 targetScope = 'subscription'
 
 // Parameters from main.bicepparam
-param name string
+param name string = 'stqcrfdbicepdevuks1234'
 param sku_tier string
 param access_tier string
 param accountReplication string
 param publicNetworkAccess bool
 param allowBlobPublicAccess bool
 param blobSoftDeleteRetentionDays int
-param resource_group_name string = 'rg-rdf-foundations-bicep'
+param resource_group_name string = 'rg-qc-rdf-foundations-bicep-dev-uks-01'
 param resource_group_location string = 'uksouth'
 
 // Create the resource group at subscription scope
@@ -27,7 +27,7 @@ module saModule './storageAccount.bicep' = {
     access_tier: access_tier
     sku_tier: sku_tier
     accountReplication: accountReplication
-    publicNetworkAccess: publicNetworkAccess ? 'Enabled' : 'Disabled'
+    publicNetworkAccess: publicNetworkAccess ? 'Enabled' : 'Disabled' // Converts the input bool into a string
     allowBlobPublicAccess: allowBlobPublicAccess
     blobSoftDeleteRetentionDays: blobSoftDeleteRetentionDays
   }
