@@ -2,7 +2,6 @@
   "@context": {
     "az": "https://example.com/azure#",
     "az:StorageAccount": "https://example.com/azure#StorageAccount",
-    "az:name": "https://example.com/azure#name",
     "az:sku": "https://example.com/azure#sku",
     "az:tier": "https://example.com/azure#tier",
     "az:accessTier": "https://example.com/azure#accessTier",

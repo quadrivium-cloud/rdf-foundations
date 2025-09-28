@@ -21,7 +21,6 @@ def load_definition(path: Path) -> dict:
 
 def extract_storage_account(defn: dict) -> dict:
     sa = {}
-    sa['name'] = defn.get('az:name')
     sku = defn.get('az:sku') or {}
     sa['sku_tier'] = sku.get('az:tier')
     sa['access_tier'] = defn.get('az:accessTier')
@@ -30,14 +29,15 @@ def extract_storage_account(defn: dict) -> dict:
     sa['allowBlobPublicAccess'] = defn.get('az:allowBlobPublicAccess')
     sa['blobSoftDeleteRetentionDays'] = defn.get('az:blobSoftDeleteRetentionDays')
 
-    # Require at least name, sku_tier and accountReplication
-    required = [k for k in ('name', 'sku_tier', 'accountReplication') if not sa.get(k)]
+    # Require at least 'sku_tier' and 'accountReplication'
+    required = [k for k in ('sku_tier', 'accountReplication') if not sa.get(k)]
     if required:
         raise ValueError(f"Missing required properties in definition: {required}")
 
     return sa
 
 
+# Configuration writer for Terraform
 def write_terraform(outdir: Path, values: dict):
     outdir.mkdir(parents=True, exist_ok=True)
     out_path = outdir / 'storage_account.auto.tfvars'
@@ -52,6 +52,7 @@ def write_terraform(outdir: Path, values: dict):
     print(f'Wrote tfvars to: {out_path}')
 
 
+# Configuration writer for Bicep
 def write_bicep(outdir: Path, values: dict):
     outdir.mkdir(parents=True, exist_ok=True)
     out_file = outdir / 'main.bicepparam'
@@ -69,8 +70,7 @@ def write_bicep(outdir: Path, values: dict):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--target', choices=['terraform', 'bicep'], required=True)
-    parser.add_argument('--definition', default='definitions/storage_account.jsonld')
+    parser.add_argument('--definition', default='definitions/storage_account.jsonld') # Path to JSON-LD definition
     args = parser.parse_args()
 
     base = Path(__file__).resolve().parent.parent
@@ -82,10 +82,9 @@ def main():
     defn = load_definition(def_path)
     sa = extract_storage_account(defn)
 
-    if args.target == 'terraform':
-        write_terraform(base / 'terraform', sa)
-    else:
-        write_bicep(base / 'bicep', sa)
+    # Write configuration files for Terraform and Bicep
+    write_terraform(base / 'terraform', sa)
+    write_bicep(base / 'bicep', sa)
 
 
 if __name__ == '__main__':

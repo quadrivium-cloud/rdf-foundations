@@ -4,7 +4,6 @@
   },
   "@id": "urn:example:storage-account:uksouth:demo",
   "@type": "az:StorageAccount",
-  "az:name": "strdfstorage",
   "az:sku": {
     "az:tier": "Standard"
   },
