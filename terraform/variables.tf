@@ -1,21 +1,45 @@
+# -- Workload specific variables --
 variable "subscription_id" {
-  type = string
+  description = "The Subscription ID which should be used to deploy resources in to."
+  type        = string
 }
 
-variable "resource_group_name" {
-  type    = string
-  default = "rg-rdf-foundations-terraform"
+variable "org_prefix" {
+  description = "Prefix for the organisation, to be used for naming and tags for all resources created."
+  type        = string
+  default     = "qc"
 }
 
-variable "resource_group_location" {
-  type    = string
-  default = "UK South"
+variable "environment" {
+  description = "The environment for the deployment (e.g., dev, test, prod)."
+  type        = string
+  default     = "dev"
 }
 
-variable "name" {
-  type = string
+variable "workload" {
+  description = "Configuration details for the workload being deployed."
+  type = object({
+    slug       = string
+    short_name = string
+  })
+  default = {
+    slug       = "rdf-foundations-terraform"
+    short_name = "rdftf"
+  }
 }
 
+variable "location" {
+  type = object({
+    name       = string
+    short_code = string
+  })
+  default = {
+    name       = "UK South"
+    short_code = "uks"
+  }
+}
+
+# -- Storage Account variables --
 variable "sku_tier" {
   type = string
 }

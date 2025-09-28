@@ -19,8 +19,8 @@ provider "azurerm" {
 
 # Create a resource group
 resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
-  location = var.resource_group_location
+  name     = "rg-${var.org_prefix}-${var.workload.slug}-${var.environment}-${var.location.short_code}-01" # Example: rg-qc-rdf-foundations-terraform-dev-uks-01
+  location = var.location.name
 }
 
 # Define a random suffix for the storage account name to ensure uniqueness
@@ -32,7 +32,7 @@ resource "random_string" "sa_suffix" {
 
 # Create a storage account
 resource "azurerm_storage_account" "sa" {
-  name                = "${var.name}${random_string.sa_suffix.result}"
+  name                = "st${var.org_prefix}${var.workload.slug}${var.environment}${var.location.short_code}${random_string.sa_suffix.result}" # Storage account names must be globally unique and between 3-24 characters. E.g., "stqcrdftfdevuks1234"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
